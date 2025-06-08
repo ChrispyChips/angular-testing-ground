@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:testing-ground": "node dist/testing-ground/server/server.mjs"
+    "serve:ssr:testing-ground": "node dist/testing-ground/server/server.mjs",
+    "prod": "ng build --configuration production && node dist/testing-ground/server/server.mjs"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +21,7 @@
     "@angular/router": "^20.0.0",
     "@angular/ssr": "^20.0.1",
     "@types/compression": "^1.8.1",
+    "bootstrap": "^5.3.6",
     "compression": "^1.8.0",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",

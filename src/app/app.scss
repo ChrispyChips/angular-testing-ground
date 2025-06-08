@@ -1,0 +1,21 @@
+/* App component styles - scoped and optimized */
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Use CSS containment for better performance */
+:host {
+  contain: layout style;
+}
+
+/* Ensure proper layout with header and footer */
+.main {
+  min-height: calc(100vh - 120px); /* Adjust based on header/footer height */
+  padding: 2rem 0;
+}
+
+.content {
+  min-height: 100%;
+}
