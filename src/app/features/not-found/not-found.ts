@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Location } from '@angular/common';
-import { SeoService } from '../services/seo.service';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-not-found',
   standalone: true,
-  imports: [RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './not-found.html',
   styleUrl: './not-found.scss'
 })
@@ -17,10 +18,15 @@ export class NotFound implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.setSEO();
+  }
+
+  private setSEO(): void {
     this.seoService.setSEO({
-      title: '404 - Page Not Found | Testing Ground',
-      description: 'The page you are looking for could not be found. Please check the URL or navigate back to our homepage.',
-      robots: 'noindex, nofollow', // Tell search engines not to index 404 pages
+      title: '404 - Page Not Found',
+      description: 'The page you are looking for does not exist.',
+      ogTitle: '404 - Page Not Found',
+      ogDescription: 'The page you are looking for does not exist.',
       ogType: 'website'
     });
   }

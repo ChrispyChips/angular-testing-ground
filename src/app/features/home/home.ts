@@ -1,9 +1,9 @@
 import { Component, OnInit, signal, inject, afterNextRender } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { SeoService } from '../services/seo.service';
-import { CmsService } from '../services/cms.service';
-import { HomePageData } from '../types/home-page-data.interface';
+import { SeoService } from '../../services/seo.service';
+import { CmsService } from '../../services/cms.service';
+import { HomePageData } from '../../types/home-page-data.interface';
 
 @Component({
   selector: 'app-home',
