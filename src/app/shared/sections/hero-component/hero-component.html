@@ -1,0 +1,36 @@
+<div class="hero-outer">
+  <div class="hero-wrapper">
+    <picture>
+      <!-- Mobile first: show on screens up to 991px wide -->
+      <source
+        media="(max-width: 991px)"
+        [attr.srcset]="mobileHeader()?.url + '?w=750&h=1334&fit=fill&fm=webp'"
+        type="image/webp" />
+      <!-- Desktop: show on screens 992px and up -->
+      <source
+        media="(min-width: 992px)"
+        [attr.srcset]="desktopImage()?.url + '?h=1080&w=1920&fit=fill&fm=webp&q=80'"
+        type="image/webp" />
+      <!-- Fallback for browsers that don't support <picture> or WebP -->
+      <img
+        class="hero-img"
+        [src]="desktopImage()?.url + '?h=1080&w=1920&fit=fill&fm=webp&q=80'"
+        [alt]="desktopImage()?.title || 'Hero Image'"
+        fetchpriority="high" />
+    </picture>
+    <div class="overlay-content" [ngStyle]="{ backgroundColor: 'rgba(0, 0, 0, ' + (desktopOverlayOpacity() / 100) + ')' }">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

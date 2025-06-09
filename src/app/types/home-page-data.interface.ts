@@ -25,7 +25,7 @@ export interface HomePageData {
     footerImage: Image;
     footerImageMobile: Image;
   }
-  
+
   export interface Seo {
     slug: string;
     seoTitle: string;
@@ -39,31 +39,31 @@ export interface HomePageData {
     shareType: string;
     shareUrl: string;
   }
-  
+
   export interface ShareImage {
     title: string;
     description: string;
     url: string;
   }
-  
+
   export interface SearchText {
     name: string;
     shortText: string;
     text: string;
   }
-  
+
   export interface MobileHeader {
     title: string;
     description: string;
     url: string;
   }
-  
+
   export interface DesktopImage {
     title: string;
     description: string;
     url: string;
   }
-  
+
   export interface FeaturedTour {
     name: string;
     autoplay: boolean;
@@ -74,25 +74,25 @@ export interface HomePageData {
     url: string;
     buttonText?: string;
   }
-  
+
   export interface SlideImage {
     title: string;
     description: string;
     url: string;
   }
-  
+
   export interface Reason {
     name: string;
     image: Image;
     text: string;
   }
-  
+
   export interface Image {
     title?: string;
     description?: string;
     url?: string;
   }
-  
+
   export interface CategoryCarousel {
     name: string;
     image: Image;
@@ -108,8 +108,8 @@ export interface HomePageData {
     shortText: string;
     url: string;
   }
-  
-  
+
+
   export interface HomePageTourSlider {
     name: string;
     tabTitle: string;
@@ -120,7 +120,7 @@ export interface HomePageData {
     viewAllText?: string;
     viewAllRoute?: string;
   }
-  
+
   export interface TravelStory {
     name: string;
     shortTextOne: string;
@@ -128,11 +128,18 @@ export interface HomePageData {
     longTextOne: string;
     image: Image;
   }
-  
+
   export interface Membership {
     name: string;
     shortTextOne: string;
     longTextOne: string;
     image: Image;
   }
-  
+
+export interface ImageText {
+  name: string;
+  image: Image;
+  shortText: string;
+  text: string;
+  url: string;
+}

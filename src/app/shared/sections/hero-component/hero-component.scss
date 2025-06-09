@@ -1,0 +1,60 @@
+$break-medium: 994px;
+$break-large: 1024px;
+
+.hero-outer,
+.hero-wrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-img {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  min-width: 100vw !important;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  display: block;
+}
+
+.hero-outer {
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background-image: url('https://images.ctfassets.net/huwbudysxepr/55Y2VGupU10wXoBUnt9RmY/bd2d292abbc02a751059dec86c854636/Herotear_White.svg');
+    background-repeat: no-repeat;
+    background-position: 0 -7px;
+    background-size: cover;
+    z-index: 2;
+    @media screen and (max-width: $break-medium) {
+      background-position: 0 15px;
+    }
+  }
+
+  .hero-wrapper {
+    overflow: hidden;
+    height: calc(100vh - 150px);
+    @media screen and (max-width: $break-large) {
+      height: calc(100vh - 70px);
+    }
+    .overlay-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+  }
+}

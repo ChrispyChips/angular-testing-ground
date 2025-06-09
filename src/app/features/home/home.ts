@@ -4,11 +4,12 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SeoService } from '../../services/seo.service';
 import { CmsService } from '../../services/cms.service';
 import { HomePageData } from '../../types/home-page-data.interface';
+import {HeroComponent} from '../../shared/sections/hero-component/hero-component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HeroComponent],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
@@ -57,7 +58,7 @@ export class Home implements OnInit {
   private preloadCriticalImages(reasons: any[]): void {
     // Preload first 3 reason images (most likely to be in viewport)
     const criticalImages = reasons.slice(0, 3).map(reason => reason.image?.url).filter(Boolean);
-    
+
     criticalImages.forEach(imageUrl => {
       const link = document.createElement('link');
       link.rel = 'preload';
@@ -79,7 +80,7 @@ export class Home implements OnInit {
    */
   getOptimizedImageUrl(imageUrl: string | undefined, width: number = 120): string {
     if (!imageUrl) return '';
-    
+
     try {
       // Add size parameters for CDN optimization
       const url = new URL(imageUrl);
@@ -87,7 +88,7 @@ export class Home implements OnInit {
       url.searchParams.set('h', width.toString());
       url.searchParams.set('fit', 'cover');
       url.searchParams.set('q', '85'); // Quality optimization
-      
+
       return url.toString();
     } catch {
       // Return original URL if URL parsing fails
