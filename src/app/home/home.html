@@ -1,97 +1,72 @@
-<div class="home-container">
-  <!-- Debug Info -->
-  <div class="bg-light p-2 mb-3">
-    <small>Debug: loading={{loading()}}, pageData={{pageData() ? 'exists' : 'null'}}</small>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <!-- Debug Info -->
+      <div class="p-2 mb-3">
+        <small>Debug: loading={{loading()}}, pageData={{pageData() ? 'exists' : 'null'}}</small>
+      </div>
+    </div>
   </div>
+</div>
 
-  <!-- Loading State -->
-  @if(loading()) {
-    <div class="text-center py-5">
-      <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <p class="mt-3">Loading content...</p>
-    </div>
-  } @else if(!loading() && pageData()) {
-    <section class="hero-section bg-primary text-white py-5">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6">
-            <h1 class="display-4 fw-bold mb-4">{{ pageData()!.title }}</h1>
-            <p class="lead mb-4">{{ pageData()!.description }}</p>
-            <button class="btn btn-light btn-lg me-3">Get Started</button>
-            <button class="btn btn-outline-light btn-lg">Learn More</button>
-          </div>
-          <div class="col-lg-6">
-            <div class="text-center">
-              <div class="hero-placeholder bg-light bg-opacity-25 rounded p-5">
-                <h3>🚀</h3>
-                <p class="mb-0">{{ pageData()!.content }}</p>
-              </div>
-            </div>
-          </div>
+<div class="home-container">
+
+  <!-- Reasons to Book Section -->
+  <section class="reasons-section py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mb-5">
+          <!-- Fallback heading for immediate LCP -->
+          <h2 class="reasons-heading">
+            @if (pageData()?.reasonsHeading) {
+              {{ pageData()?.reasonsHeading }}
+            } @else {
+              Why choose Expat Explore Travel's group holidays?
+            }
+          </h2>
         </div>
       </div>
-    </section>
-
-    <section class="features-section py-5">
-      <div class="container">
-        <div class="row text-center mb-5">
-          <div class="col-12">
-            <h2 class="display-5 fw-bold">Features</h2>
-            <p class="lead text-muted">Built with modern web technologies</p>
+      
+      <!-- Loading State for content -->
+      @if(loading() || !pageData()) {
+        <div class="text-center py-5">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
           </div>
+          <p class="mt-3">Loading content...</p>
         </div>
+      } @else {
         <div class="row g-4">
-          <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body text-center p-4">
-                <div class="feature-icon mb-3">
-                  <h2>⚡</h2>
+          @for (reason of pageData()?.reasons; track reason.name; let i = $index) {
+            <div class="col-lg-4 col-md-6">
+              <div class="reason-card card h-100">
+                <div class="card-body">
+                  <div class="reason-content d-flex align-items-start gap-3">
+                    @if (reason.image.url) {
+                      <div class="reason-icon flex-shrink-0">
+                        <img
+                          [src]="getOptimizedImageUrl(reason.image.url, 120)"
+                          [alt]="reason.image.title || reason.name"
+                          class="reason-icon-img"
+                          [loading]="i < 3 ? 'eager' : 'lazy'"
+                          width="60"
+                          height="60"
+                          (load)="onImageLoad(reason.image.url!)"
+                          [class.loaded]="isImageLoaded(reason.image.url!)"
+                        >
+                      </div>
+                    }
+                    <div class="reason-text flex-grow-1">
+                      <h3 class="card-title mb-2">{{ reason.name }}</h3>
+                      <div class="card-text" [innerHTML]="sanitizeHtml(reason.text)"></div>
+                    </div>
+                  </div>
                 </div>
-                <h5 class="card-title">Fast Performance</h5>
-                <p class="card-text">Optimized with Angular 20's latest features for blazing fast performance.</p>
               </div>
             </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body text-center p-4">
-                <div class="feature-icon mb-3">
-                  <h2>🎨</h2>
-                </div>
-                <h5 class="card-title">Modern Design</h5>
-                <p class="card-text">Beautiful UI built with Bootstrap 5 and modern CSS techniques.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm">
-              <div class="card-body text-center p-4">
-                <div class="feature-icon mb-3">
-                  <h2>🔧</h2>
-                </div>
-                <h5 class="card-title">Easy Development</h5>
-                <p class="card-text">Standalone components and modern tooling for efficient development.</p>
-              </div>
-            </div>
-          </div>
+          }
         </div>
-      </div>
-    </section>
-
-    <section class="cta-section bg-light py-5">
-      <div class="container text-center">
-        <h2 class="display-6 fw-bold mb-3">Ready to get started?</h2>
-        <p class="lead text-muted mb-4">Join thousands of developers building amazing applications.</p>
-        <button class="btn btn-primary btn-lg">Start Building</button>
-      </div>
-    </section>
-  } @else if(!loading() && !pageData()) {
-    <div class="text-center py-5">
-      <h2>Welcome to Testing Ground</h2>
-      <p class="lead">A modern Angular 20 application built with the latest features and best practices.</p>
-      <button class="btn btn-primary btn-lg">Get Started</button>
+      }
     </div>
-  }
+  </section>
 </div>

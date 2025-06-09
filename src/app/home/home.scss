@@ -1,33 +1,142 @@
-.home-container {
-  min-height: 100vh;
+// Reasons Section Styles
+.reasons-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 4rem 0;
 }
 
-.hero-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-  min-height: 60vh;
+.reasons-heading {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
+  }
+}
+
+.reason-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.reason-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.reason-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8f9fa;
   display: flex;
   align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  position: relative;
+
+  // Skeleton loading state
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 1.5s infinite;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  // Hide skeleton when image is loaded
+  &.loaded::before {
+    display: none;
+  }
 }
 
-.hero-placeholder {
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
-.feature-icon {
-  font-size: 3rem;
-  line-height: 1;
+.reason-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.loaded {
+    opacity: 1;
+  }
 }
 
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.reason-text {
+  flex-grow: 1;
+  min-width: 0;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+.reason-card .card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
 }
 
-.cta-section {
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) !important;
+.reason-card .card-text {
+  color: #6c757d;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .reasons-heading {
+    font-size: 2rem;
+  }
+
+  .reason-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .reason-card .card-title {
+    font-size: 1rem;
+  }
+
+  .reason-card .card-text {
+    font-size: 0.85rem;
+  }
 }
