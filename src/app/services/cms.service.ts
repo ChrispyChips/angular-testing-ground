@@ -31,7 +31,7 @@ export class CmsService {
    * Get page data from CMS
    */
   getPageData(slug: string): Observable<CMSPageData> {
-    return this.http.get<CMSPageData>(`${this.apiUrl}/pages/${slug}`).pipe(
+    return this.http.get<CMSPageData>(`https://expatexplore.com/v3/pages/newstatic/home.json`).pipe(
       catchError(error => {
         console.log('--Error fetching real CMS data');
         // Return fallback data
