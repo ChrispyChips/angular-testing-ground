@@ -26,7 +26,7 @@
           </h2>
         </div>
       </div>
-      
+
       <!-- Loading State for content -->
       @if(loading() || !pageData()) {
         <div class="text-center py-5">
@@ -48,7 +48,6 @@
                           [src]="getOptimizedImageUrl(reason.image.url, 120)"
                           [alt]="reason.image.title || reason.name"
                           class="reason-icon-img"
-                          [loading]="i < 3 ? 'eager' : 'lazy'"
                           width="60"
                           height="60"
                           (load)="onImageLoad(reason.image.url!)"
