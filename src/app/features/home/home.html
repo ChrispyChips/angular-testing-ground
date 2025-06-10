@@ -9,13 +9,18 @@
   </div>
 </div>
 
+
+
 <div class="home-container">
-  @if (pageData()?.desktopImage && pageData()?.mobileHeader && pageData()?.opacityPercentage) {
+  @defer (when pageData()?.desktopImage && pageData()?.mobileHeader && pageData()?.opacityPercentage) {
     <app-hero-component
       [desktopImage]="pageData()?.desktopImage"
       [mobileHeader]="pageData()?.mobileHeader"
       [desktopOverlayOpacity]="pageData()?.opacityPercentage || 0"></app-hero-component>
+  } @placeholder {
+    <ngx-skeleton-loader appearance="custom-content" [theme]="{height: '100vh', background: '#f2f2f2'}"/>
   }
+
 
 
   <!-- Reasons to Book Section -->

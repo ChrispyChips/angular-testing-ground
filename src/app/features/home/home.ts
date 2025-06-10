@@ -5,11 +5,12 @@ import { SeoService } from '../../services/seo.service';
 import { CmsService } from '../../services/cms.service';
 import { HomePageData } from '../../types/home-page-data.interface';
 import {HeroComponent} from '../../shared/sections/hero-component/hero-component';
+import {NgxSkeletonLoaderComponent} from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, HeroComponent],
+  imports: [CommonModule, HeroComponent, NgxSkeletonLoaderComponent],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
